@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Forest_fire_control.Data.Models
+{
+    public class Application
+    {
+        public long Id { get; set; }
+        public long UserId { get; set; }
+        public long ObservationSiteId { get; set; }
+        public DateTime Data { get; set; }
+        public string Description { get; set; }
+
+        public User User { get; set; }
+        public ObservationSite ObservationSite { get; set; }
+    }
+}

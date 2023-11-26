@@ -1,0 +1,13 @@
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC\Forest fire control\Forest fire control.BI\bin\Debug\netcoreapp3.1\Forest fire control.BI.deps.json
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC\Forest fire control\Forest fire control.BI\bin\Debug\netcoreapp3.1\Forest fire control.BI.dll
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC\Forest fire control\Forest fire control.BI\bin\Debug\netcoreapp3.1\Forest fire control.BI.pdb
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC\Forest fire control\Forest fire control.BI\obj\Debug\netcoreapp3.1\Forest fire control.BI.csproj.AssemblyReference.cache
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC\Forest fire control\Forest fire control.BI\obj\Debug\netcoreapp3.1\Forest fire control.BI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC\Forest fire control\Forest fire control.BI\obj\Debug\netcoreapp3.1\Forest fire control.BI.AssemblyInfoInputs.cache
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC\Forest fire control\Forest fire control.BI\obj\Debug\netcoreapp3.1\Forest fire control.BI.AssemblyInfo.cs
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC\Forest fire control\Forest fire control.BI\obj\Debug\netcoreapp3.1\Forest fire control.BI.csproj.CoreCompileInputs.cache
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC\Forest fire control\Forest fire control.BI\obj\Debug\netcoreapp3.1\Forest fire control.BI.dll
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC\Forest fire control\Forest fire control.BI\obj\Debug\netcoreapp3.1\Forest fire control.BI.pdb
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC\Forest fire control\Forest fire control.BI\bin\Debug\netcoreapp3.1\Forest fire control.Data.dll
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC\Forest fire control\Forest fire control.BI\bin\Debug\netcoreapp3.1\Forest fire control.Data.pdb
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC\Forest fire control\Forest fire control.BI\obj\Debug\netcoreapp3.1\Forest fire control.BI.csproj.CopyComplete
