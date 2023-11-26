@@ -73,7 +73,6 @@ namespace Forest_fire_control.BI.Services
                     new Claim(ClaimTypes.Email, user.Email.ToString())
                 };
 
-
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
