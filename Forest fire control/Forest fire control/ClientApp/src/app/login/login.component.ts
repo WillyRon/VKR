@@ -28,7 +28,7 @@ export class LoginComponent {
       this.authService.login(email, password).subscribe(
         response => {
           if(response){
-          this.authService.updateAdminStatus();
+          this.authService.updateTokenStatus();
           this.router.navigate(['/']);            
           }
         },

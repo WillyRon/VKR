@@ -8,3 +8,13 @@ C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC\Forest fire control\Forest fire c
 C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC\Forest fire control\Forest fire control.Data\obj\Debug\netcoreapp3.1\Forest fire control.Data.csproj.CoreCompileInputs.cache
 C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC\Forest fire control\Forest fire control.Data\obj\Debug\netcoreapp3.1\Forest fire control.Data.dll
 C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC\Forest fire control\Forest fire control.Data\obj\Debug\netcoreapp3.1\Forest fire control.Data.pdb
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC.git\Forest fire control\Forest fire control.Data\bin\Debug\netcoreapp3.1\Forest fire control.Data.deps.json
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC.git\Forest fire control\Forest fire control.Data\bin\Debug\netcoreapp3.1\Forest fire control.Data.dll
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC.git\Forest fire control\Forest fire control.Data\bin\Debug\netcoreapp3.1\Forest fire control.Data.pdb
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC.git\Forest fire control\Forest fire control.Data\obj\Debug\netcoreapp3.1\Forest fire control.Data.csproj.AssemblyReference.cache
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC.git\Forest fire control\Forest fire control.Data\obj\Debug\netcoreapp3.1\Forest fire control.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC.git\Forest fire control\Forest fire control.Data\obj\Debug\netcoreapp3.1\Forest fire control.Data.AssemblyInfoInputs.cache
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC.git\Forest fire control\Forest fire control.Data\obj\Debug\netcoreapp3.1\Forest fire control.Data.AssemblyInfo.cs
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC.git\Forest fire control\Forest fire control.Data\obj\Debug\netcoreapp3.1\Forest fire control.Data.csproj.CoreCompileInputs.cache
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC.git\Forest fire control\Forest fire control.Data\obj\Debug\netcoreapp3.1\Forest fire control.Data.dll
+C:\Users\Skvad\Desktop\Учеба\5 ВКР\FFC.git\Forest fire control\Forest fire control.Data\obj\Debug\netcoreapp3.1\Forest fire control.Data.pdb

@@ -68,10 +68,11 @@ namespace Forest_fire_control.BI.Services
 
             var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, user.Id.ToString())
+                    new Claim(ClaimTypes.Name, user.Id.ToString()),
+                    new Claim(ClaimTypes.Role, user.Role.ToString()),
+                    new Claim(ClaimTypes.Email, user.Email.ToString())
                 };
 
-             claims.Add(new Claim(ClaimTypes.Role, user.Role.ToString()));
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
