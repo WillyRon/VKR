@@ -1,0 +1,42 @@
+<div class="user-form">
+  <h2 class="form-title">Создать пользователя</h2>
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="user.email" required>
+      </div>
+      <div class="form-group">
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="user.name" required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Фамилия:</label>
+        <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" required>
+      </div>
+      <div class="form-group">
+        <label for="middleName">Отчество:</label>
+        <input type="text" id="middleName" name="middleName" [(ngModel)]="user.middleName">
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Номер телефона:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber" required>
+      </div>
+      <div class="form-group">
+        <label for="region">Регион:</label>
+        <input type="text" id="region" name="region" [(ngModel)]="user.region" required>
+      </div>
+      <div class="form-group">
+        <label for="role">Роль:</label>
+        <select id="role" name="role" [(ngModel)]="user.role">
+          <option *ngFor="let option of userTypeOptions" [value]="option.id">{{ option.label }}</option>
+        </select>
+      </div>
+      <div *ngIf="CreatedFailed" class="message error-message">
+        {{ CreatedErrorMessage }}
+      </div>
+      <div *ngIf="CreatedSuccess" class="message success-message">
+        Пользователь успешно создан
+      </div>
+      <button type="submit" [disabled]="userForm.invalid" class="submit-button">Добавить</button>
+    </form>
+  </div>

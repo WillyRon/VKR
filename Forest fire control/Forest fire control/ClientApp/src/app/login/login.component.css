@@ -1,0 +1,36 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; 
+  }
+  
+  
+  form {
+    width: 300px; 
+    background-color: #ffffff; 
+    padding: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px; 
+  }
+  
+  mat-form-field {
+    width: 100%; 
+    margin-bottom: 15px; 
+  }
+  
+  button {
+    width: 100%; 
+    margin-top: 15px; 
+    background-color: #1976D2; 
+    color: #ffffff; 
+  }
+  
+  button:disabled {
+    background-color: #b3b3b3; 
+  }
+  
+
+  mat-error {
+    color: #d9534f; 
+  }

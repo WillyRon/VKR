@@ -1,0 +1,47 @@
+<header>
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="['/']">
+        <img src="../../assets/Logo/Logo.png" alt="Logo" style="height: 60px;">
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target=".navbar-collapse"
+        aria-label="Toggle navigation"
+        [attr.aria-expanded]="isExpanded"
+        (click)="toggle()"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
+        [ngClass]="{ show: isExpanded }"
+      >
+        <ul class="navbar-nav flex-grow">
+
+          <li class="nav-item dropdown" (mouseover)="toggleDropdown()" (mouseout)="toggleDropdown()">
+            <a
+              class="nav-link dropdown-toggle text-dark"
+              id="userDropdown"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <img src="../../assets/Logo/user.png" alt="Logo" style="height: 60px;">
+            </a>
+            <div class="dropdown-menu mt-0" [ngClass]="{ 'show': isDropdownOpen }" aria-labelledby="userDropdown">
+              <a class="dropdown-item" [routerLink]="['/create-user']">Добавить пользователя</a>
+              <a class="dropdown-item" [routerLink]="['/counter']">Каунт</a>
+              <a *ngIf="isAdmin" class="dropdown-item" [routerLink]="['/create-user']">Админская</a>
+              <a class="dropdown-item" [routerLink]="['/create-user']">Добавить пользователя</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" (click)="logOut()">Выйти</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
