@@ -1,4 +1,5 @@
-﻿using Forest_fire_control.Data.Models;
+﻿using Forest_fire_control.Data.Entity;
+using Forest_fire_control.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace Forest_fire_control.Data.Config
         public DbSet<Application> Application { get; set; }
         public DbSet<MessageError> MessageError { get; set; }
         public DbSet<VideoArchive> VideoArchive { get; set; }
+        public DbSet<Region> Region { get; set; }
         public DbSet<Incedent> Incedent { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
@@ -27,6 +29,10 @@ namespace Forest_fire_control.Data.Config
                 .HasForeignKey<VideoArchive>(va => va.IncedentId);
 
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ObservationSite>()
+                .HasIndex(o => new { o.Longitude, o.Latitude })
+                .IsUnique();
         }
     }
 }

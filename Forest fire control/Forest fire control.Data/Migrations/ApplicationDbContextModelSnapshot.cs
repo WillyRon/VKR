@@ -19,12 +19,28 @@ namespace Forest_fire_control.Data.Migrations
                 .HasAnnotation("ProductVersion", "3.1.32")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            modelBuilder.Entity("Forest_fire_control.Data.Entity.Region", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SysName")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Region");
+                });
+
             modelBuilder.Entity("Forest_fire_control.Data.Models.Application", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("Data")
                         .HasColumnType("timestamp without time zone");
@@ -32,11 +48,11 @@ namespace Forest_fire_control.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<long>("ObservationSiteId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("ObservationSiteId")
+                        .HasColumnType("uuid");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -49,22 +65,21 @@ namespace Forest_fire_control.Data.Migrations
 
             modelBuilder.Entity("Forest_fire_control.Data.Models.Incedent", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("Data")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<long>("ObservationSiteId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("ObservationSiteId")
+                        .HasColumnType("uuid");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer");
 
-                    b.Property<long>("VideoArchiveId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("VideoArchiveId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -83,8 +98,8 @@ namespace Forest_fire_control.Data.Migrations
                     b.Property<string>("Message")
                         .HasColumnType("text");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -95,10 +110,9 @@ namespace Forest_fire_control.Data.Migrations
 
             modelBuilder.Entity("Forest_fire_control.Data.Models.ObservationSite", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Address")
                         .HasColumnType("text");
@@ -112,17 +126,21 @@ namespace Forest_fire_control.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
+                    b.Property<Guid>("RegionId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("RegionId");
 
                     b.ToTable("ObservationSite");
                 });
 
             modelBuilder.Entity("Forest_fire_control.Data.Models.User", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Email")
                         .HasColumnType("text");
@@ -142,32 +160,33 @@ namespace Forest_fire_control.Data.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text");
 
-                    b.Property<string>("Region")
-                        .HasColumnType("text");
+                    b.Property<Guid>("RegionId")
+                        .HasColumnType("uuid");
 
                     b.Property<int>("Role")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RegionId");
+
                     b.ToTable("User");
                 });
 
             modelBuilder.Entity("Forest_fire_control.Data.Models.VideoArchive", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("Data")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<long>("IncedentId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("IncedentId")
+                        .HasColumnType("uuid");
 
-                    b.Property<long>("ObservationSiteId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("ObservationSiteId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -208,6 +227,24 @@ namespace Forest_fire_control.Data.Migrations
                     b.HasOne("Forest_fire_control.Data.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Forest_fire_control.Data.Models.ObservationSite", b =>
+                {
+                    b.HasOne("Forest_fire_control.Data.Entity.Region", "Region")
+                        .WithMany()
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Forest_fire_control.Data.Models.User", b =>
+                {
+                    b.HasOne("Forest_fire_control.Data.Entity.Region", "Region")
+                        .WithMany()
+                        .HasForeignKey("RegionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

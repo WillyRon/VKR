@@ -15,6 +15,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using Forest_fire_control.Data.Config;
 using Microsoft.EntityFrameworkCore;
+using Forest_fire_control.Data.Entity;
 
 namespace Forest_fire_control.BI.Services
 {
@@ -84,7 +85,7 @@ namespace Forest_fire_control.BI.Services
             return tokenHandler.WriteToken(token);
         }
 
-        public async Task<AuthenticationResult> CreateUser(UserModel userModel)
+        public async Task<AuthenticationResult> CreateUser(UserModel userModel, Guid regionId)
         {
             var result = new AuthenticationResult();
             var userDb = await GetUser(userModel.Email);
@@ -105,7 +106,7 @@ namespace Forest_fire_control.BI.Services
                 PhoneNumber = userModel.PhoneNumber,
                 LastName = userModel.LastName,
                 MiddleName = userModel.MiddleName,
-                Region = userModel.Region
+                RegionId = regionId
             };
             _dbContext.User.Add(user);
             var saveChangesResult = await _dbContext.SaveChangesAsync();

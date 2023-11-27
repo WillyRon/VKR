@@ -34,6 +34,7 @@ namespace Forest_fire_control
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IObservationService, ObservationService>();
             services.Configure<MailgunSettings>(Configuration.GetSection("MailgunSettings"));
             services.AddSingleton<IEmailSender, MailgunEmailSender>();
 

@@ -1,0 +1,47 @@
+<div class="user-form">
+  <h2 class="form-title">Создать точку видеонаблюдения</h2>
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="observation.name" required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Долгота:</label>
+        <input type="number" id="lastName" name="lastName" [(ngModel)]="observation.longitude" required>
+      </div>
+      <div class="form-group">
+        <label for="middleName">Широта:</label>
+        <input type="number" id="middleName" name="middleName" [(ngModel)]="observation.latitude">
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Адрес:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" [(ngModel)]="observation.address" required>
+      </div>
+
+      <div class="form-group">
+        <label for="region">Регион:</label>
+        <input
+          type="text"
+          id="region"
+          name="region"
+          [(ngModel)]="observation.region"
+          [matAutocomplete]="auto"
+          (input)="filterRegions($event.target.value)"
+          required
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let region of filteredRegions" [value]="region.name">
+            {{ region.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </div>
+
+      <div *ngIf="CreatedFailed" class="message error-message">
+        {{ CreatedErrorMessage }}
+      </div>
+      <div *ngIf="CreatedSuccess" class="message success-message">
+        Точка видеонаблюдения успешно создана
+      </div>
+      <button type="submit" [disabled]="userForm.invalid" class="submit-button">Добавить</button>
+    </form>
+  </div>

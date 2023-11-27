@@ -1,4 +1,5 @@
-﻿using Forest_fire_control.Data.Enums;
+﻿using Forest_fire_control.Data.Entity;
+using Forest_fire_control.Data.Enums;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace Forest_fire_control.Data.Models
 {
     public class User
     {
-        public long Id { get; set; }
+        public Guid Id { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
@@ -17,6 +18,9 @@ namespace Forest_fire_control.Data.Models
         public string Name { get; set; }
         public string LastName { get; set; }
         public string MiddleName { get; set; }
-        public string Region { get; set; }
+        public Guid RegionId { get; set; }
+
+
+        public Region Region { get; set; }
     }
 }

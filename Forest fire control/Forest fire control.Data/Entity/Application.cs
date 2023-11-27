@@ -6,9 +6,9 @@ namespace Forest_fire_control.Data.Models
 {
     public class Application
     {
-        public long Id { get; set; }
-        public long UserId { get; set; }
-        public long ObservationSiteId { get; set; }
+        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
+        public Guid ObservationSiteId { get; set; }
         public DateTime Data { get; set; }
         public string Description { get; set; }
 

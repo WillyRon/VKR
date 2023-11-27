@@ -1,4 +1,6 @@
 # .gitignore
 
-bin/
-obj/
+**/obj
+**/bin
+**/Debug
+**/Content/logs

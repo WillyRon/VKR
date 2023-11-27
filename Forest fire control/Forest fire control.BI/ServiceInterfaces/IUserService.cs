@@ -13,7 +13,7 @@ namespace Forest_fire_control.BI.ServiceInterfaces
     {
         Task<AuthenticationResult> Login(LoginModel model);
 
-        Task<AuthenticationResult> CreateUser(UserModel userMode);
+        Task<AuthenticationResult> CreateUser(UserModel userMode, Guid regionId);
 
         Task<User> GetUser(string email);
     }

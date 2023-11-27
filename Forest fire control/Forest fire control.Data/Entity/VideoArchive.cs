@@ -6,9 +6,9 @@ namespace Forest_fire_control.Data.Models
 {
     public class VideoArchive
     {
-        public long Id { get; set; }
-        public long ObservationSiteId { get; set; }
-        public long IncedentId { get; set; }
+        public Guid Id { get; set; }
+        public Guid ObservationSiteId { get; set; }
+        public Guid IncedentId { get; set; }
         public DateTime Data { get; set; }
 
         public Incedent Incedent { get; set; }

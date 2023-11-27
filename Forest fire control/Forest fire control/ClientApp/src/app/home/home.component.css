@@ -1,0 +1,47 @@
+#map {
+    height: 80vh;
+  }
+
+  ::ng-deep .ymaps-2-1-79-gototech {
+    display: none !important;
+  }
+  
+  ::ng-deep .ymaps-i-ua_js_yes .ymaps-i-credits {
+    display: none !important;
+  }
+
+  ::ng-deep .ymaps-2-1-79-gotoymaps__container {
+    display: none !important;
+  }
+
+  ::ng-deep .ymaps-2-1-79-copyright__content-cell {
+    display: none !important;
+  }
+
+  .custom-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .observation-name {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .menu-button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 5px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .menu-button:hover {
+    background-color: #2980b9;
+  }

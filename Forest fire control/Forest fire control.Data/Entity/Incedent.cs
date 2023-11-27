@@ -7,9 +7,9 @@ namespace Forest_fire_control.Data.Models
 {
     public class Incedent
     {
-        public long Id { get; set; }
-        public long VideoArchiveId { get; set; }
-        public long ObservationSiteId { get; set; }
+        public Guid Id { get; set; }
+        public Guid VideoArchiveId { get; set; }
+        public Guid ObservationSiteId { get; set; }
         public DateTime Data { get; set; }
         public IncedentStatusEnum Status { get; set; }
 
