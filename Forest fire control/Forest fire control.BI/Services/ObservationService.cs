@@ -40,7 +40,8 @@ namespace Forest_fire_control.BI.Services
                     Longitude = observation.Longitude,
                     Latitude = observation.Latitude,
                     Address = observation.Address,
-                    Region = observation.Region.Name 
+                    Region = observation.Region.Name,
+                    Url = observation.Url,
                 };
 
                 observationModels.Add(observationModel);
@@ -84,7 +85,8 @@ namespace Forest_fire_control.BI.Services
                 Longitude = observationModel.Longitude,
                 Latitude = observationModel.Latitude,
                 Address =  observationModel.Address,
-                RegionId = region.Id
+                RegionId = region.Id,
+                Url = observationModel.Url,
             };
             _dbContext.ObservationSite.Add(observation);
             var saveChangesResult = await _dbContext.SaveChangesAsync();
@@ -108,6 +110,15 @@ namespace Forest_fire_control.BI.Services
                 .FirstOrDefaultAsync(o => o.Longitude == longitude && o.Latitude == latitude);
         }
 
+        public async Task<List<Incedent>> GetIncedentObservation(Guid observationid)
+        {
+            return await _dbContext.Incedent.Where(i => i.ObservationSiteId == observationid).ToListAsync();
+        }
+
+        public async Task<List<VideoArchive>> GetVideoArchiveObservation(Guid observationid)
+        {
+            return await _dbContext.VideoArchive.Where(i => i.ObservationSiteId == observationid).ToListAsync();
+        }
 
 
 

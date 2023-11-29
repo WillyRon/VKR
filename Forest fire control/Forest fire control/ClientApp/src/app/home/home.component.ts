@@ -1,6 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { ObservationSite } from '../models/observation.model';
 import { ObservationService } from '../services/observation.service';
+import { Router } from '@angular/router';
 
 
 declare const ymaps: any;
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit {
   observations: ObservationSite[] = [];
   yandexMap: any;
 
-  constructor(private observationService: ObservationService) {}
+  constructor(private observationService: ObservationService, private router: Router, private ngZone: NgZone) {}
 
   ngOnInit(): void {
     this.loadObservations();
@@ -38,8 +39,8 @@ export class HomeComponent implements OnInit {
     ymaps.ready(() => {
       this.yandexMap = new ymaps.Map(this.mapRef.nativeElement, {
         center: [61.317870, 100.780049],
-        zoom: 3,
-        controls: ['zoomControl', 'fullscreenControl'],
+        zoom: 4,
+        controls: ['zoomControl'],
       });
 
       this.observations.forEach((observation) => {
@@ -59,36 +60,17 @@ export class HomeComponent implements OnInit {
         marker.events.add('click', (event: any) => {
           const target = event.get('target');
           const coords = target.geometry.getCoordinates();
-          this.showCustomMenu(coords, observation);
+          this.redirectToObservationSite(observation);
         });
 
         this.yandexMap.geoObjects.add(marker);
       });
     });
   }
-
-  showCustomMenu(coords: number[], observation: ObservationSite): void {
-    this.selectedObservation = observation;
-    const content = `
-      <div class="custom-menu">
-        <a class="observation-name">${observation.name}</a>
-      </div>
-    `;
-
-    this.yandexMap.balloon.open(
-      coords,
-      {
-        contentBody: content,
-        closeButton: true,
-        maxWidth: 300,
-      }
-    );
-  }
-
-  view(): void {
-    if (this.selectedObservation) {
-      console.log('View:', this.selectedObservation);
-      // Добавьте здесь вашу логику для просмотра
-    }
+  
+  redirectToObservationSite(observation: ObservationSite): void {
+    this.ngZone.run(() => {
+       this.router.navigate(['/observation-site'], { queryParams: { observation: JSON.stringify(observation) } });
+    });
   }
 }

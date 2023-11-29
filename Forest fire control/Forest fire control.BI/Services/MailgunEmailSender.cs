@@ -27,7 +27,6 @@ public class MailgunEmailSender : IEmailSender, IDisposable
         catch (Exception ex)
         {
             Console.WriteLine($"Error connecting to SMTP server: {ex.Message}");
-            // Можно бросить исключение или принять решение о том, как обрабатывать ошибку подключения к SMTP
         }
 
         _fromName = settings.FromName;
@@ -51,7 +50,6 @@ public class MailgunEmailSender : IEmailSender, IDisposable
         catch (Exception ex)
         {
             Console.WriteLine($"Error sending email: {ex.Message}");
-            // Можно бросить исключение или принять решение о том, как обрабатывать ошибку отправки электронной почты
         }
     }
 

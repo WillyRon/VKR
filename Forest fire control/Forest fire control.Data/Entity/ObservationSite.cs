@@ -12,6 +12,7 @@ namespace Forest_fire_control.Data.Models
         public float Longitude { get; set; }
         public float Latitude { get; set; }
         public string Address { get; set; }
+        public string Url { get; set; }
         public Guid RegionId { get; set; }
 
         public Region Region { get; set; }

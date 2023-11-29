@@ -2,6 +2,7 @@ a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  margin-left: 200px;
 }
 
 html {
@@ -23,5 +24,9 @@ html {
 
 .nav-item.dropdown:hover .dropdown-menu {
   display: block;
+}
+
+.navbar-nav li {
+  margin-right: 200px; /* Измените значение отступа по вашему желанию */
 }
 

@@ -1,0 +1,43 @@
+.observation-site {
+  text-align: center;
+  padding: 20px;
+}
+
+.observation-site h1 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333; /* Цвет текста заголовка */
+  margin-bottom: 10px; /* Отступ снизу */
+}
+
+.observation-site p {
+  font-size: 16px;
+  color: #060f0b; /* Цвет текста параграфа */
+}
+
+.video-container {
+  margin-top: 20px;
+  position: relative;
+}
+
+.buttons-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 200px;
+}
+
+.buttons-container button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4760b3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.buttons-container button:hover {
+  background-color: #45a049;
+}

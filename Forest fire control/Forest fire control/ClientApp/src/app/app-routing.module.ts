@@ -6,6 +6,7 @@ import { AuthGuard } from './services/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { CreateObservationComponent } from './create-observation/create-observation.component';
+import { ObservationSiteComponent } from './observation-site/observation-site.component';
 
 const routes: Routes = [
   { path: 'counter', component: CounterComponent, canActivate: [AuthGuard] },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'create-user', component: CreateUserComponent },
   { path: 'create-observation', component: CreateObservationComponent },
+  { path: 'observation-site', component: ObservationSiteComponent },
 ];
 
 @NgModule({

@@ -2,6 +2,7 @@
 using Forest_fire_control.BI.Services;
 using Forest_fire_control.Data.Entity;
 using Forest_fire_control.Data.Model;
+using Forest_fire_control.Data.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -56,6 +57,32 @@ namespace Forest_fire_control.Controllers
         {
             var observations = await _observationService.GetObservations();
             return Ok(observations);
+        }
+
+        [HttpGet("get-incident-observation")]
+        public async Task<ActionResult<List<Incedent>>> GetIncidentObservations(float longitude, float latitude)
+        {
+            var observation = await _observationService.GetObservation(longitude, latitude);
+            var incidents = await _observationService.GetIncedentObservation(observation.Id);
+            if(incidents == null)
+            {
+                return Ok(incidents);
+            }
+
+            return BadRequest();
+        }
+
+        [HttpGet("get-video-archive-observation")]
+        public async Task<ActionResult<List<Incedent>>> GetVideoArchiveObservations(float longitude, float latitude)
+        {
+            var observation = await _observationService.GetObservation(longitude, latitude);
+            var videoArchive = await _observationService.GetVideoArchiveObservation(observation.Id);
+            if (videoArchive == null)
+            {
+                return Ok(videoArchive);
+            }
+
+            return BadRequest();
         }
 
     }

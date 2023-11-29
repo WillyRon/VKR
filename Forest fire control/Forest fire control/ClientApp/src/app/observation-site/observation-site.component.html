@@ -1,0 +1,13 @@
+<div class="observation-site">
+  <h1>{{ observation.name }}</h1>
+  <p>{{ observation.address }}</p>
+  
+  <div class="video-container">
+    <iframe width="800" height="600" src="https://www.youtube.com/embed/rMRM_0t8rjU?autoplay=1&mute=1" frameborder="0" allowfullscreen></iframe>
+  </div>
+  
+  <div class="buttons-container">
+    <button (click)="viewArchive()">Архив видео</button>
+    <button (click)="viewIncident()">Инцидент</button>
+  </div>
+</div>
