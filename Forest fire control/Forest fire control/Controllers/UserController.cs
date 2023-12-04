@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System;
+using Forest_fire_control.Data.Models;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using ApplicationModel = Forest_fire_control.Data.Model.ApplicationModel;
 
 namespace Forest_fire_control.Controllers
 {
@@ -42,6 +46,42 @@ namespace Forest_fire_control.Controllers
                 return StatusCode(500, new { ErrorMessage = $"Ошибка при создании пользователя {ex}" });
             }
         }
+
+        [HttpPost("create-application")]
+        public async Task<IActionResult> CreateApplication([FromBody] ApplicationModel applicationModel)
+        {
+            try
+            {
+                var observation = applicationModel.ObservationSite != null
+                  ? await _observationService.GetObservation(applicationModel.ObservationSite.Longitude, applicationModel.ObservationSite.Latitude)
+                  : null;
+
+                var observationId = observation?.Id;
+
+                var result = await _userService.CreateApplication(applicationModel, observationId);
+
+                if (result.Success)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest(new { ErrorMessage = result.ErrorMessage });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { ErrorMessage = $"Ошибка при создании заявки {ex}" });
+            }
+        }
+
+        [HttpGet("applications")]
+        public async Task<ActionResult<List<ApplicationModel>>> GetIncedents()
+        {
+            var applications = await _userService.GetApplications();
+            return Ok(applications);
+        }
+
         [HttpGet("user/{email}")]
         public async Task<IActionResult> GetUser(string email)
         {

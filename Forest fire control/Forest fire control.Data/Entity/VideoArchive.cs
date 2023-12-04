@@ -8,7 +8,7 @@ namespace Forest_fire_control.Data.Models
     {
         public Guid Id { get; set; }
         public Guid ObservationSiteId { get; set; }
-        public Guid IncedentId { get; set; }
+        public Guid? IncedentId { get; set; }
         public DateTime Data { get; set; }
 
         public Incedent Incedent { get; set; }

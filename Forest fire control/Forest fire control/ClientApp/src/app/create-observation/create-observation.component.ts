@@ -14,7 +14,9 @@ export class CreateObservationComponent implements OnInit {
     longitude: null,
     latitude: null,
     address: '',
-    region: ''
+    region: '',
+    url: '',
+    isActiveIncident: false
   };
 
   regions: Region[] = [];

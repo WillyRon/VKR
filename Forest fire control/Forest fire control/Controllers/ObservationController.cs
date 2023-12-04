@@ -3,9 +3,7 @@ using Forest_fire_control.BI.Services;
 using Forest_fire_control.Data.Entity;
 using Forest_fire_control.Data.Model;
 using Forest_fire_control.Data.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -30,8 +28,15 @@ namespace Forest_fire_control.Controllers
             return Ok(regions);
         }
 
+        [HttpGet("incedents")]
+        public async Task<ActionResult<List<Incedent>>> GetIncedents()
+        {
+            var incedents = await _observationService.GetIncedents();
+            return Ok(incedents);
+        }
+
         [HttpPost("create-observation")]
-        public async Task<IActionResult> CreateUser([FromBody] ObservationSiteModel observation)
+        public async Task<IActionResult> CreateObservation([FromBody] ObservationSiteModel observation)
         {
             try
             {
@@ -52,6 +57,37 @@ namespace Forest_fire_control.Controllers
             }
         }
 
+        [HttpPost("update-observation")]
+        public async Task<IActionResult> UpdateObservation([FromBody] ObservationSiteModel observation)
+        {
+            var result = await _observationService.UpdateObservation(observation);
+
+            if (result.Success)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(new { ErrorMessage = result.ErrorMessage });
+            }
+        }
+
+        [HttpPost("delete-observation")]
+        public async Task<IActionResult> DeleteObservation([FromBody] ObservationSiteModel observation)
+        {
+            var result = await _observationService.DeleteObservation(observation);
+
+            if (result.Success)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(new { ErrorMessage = result.ErrorMessage });
+            }
+        }
+
+
         [HttpGet("get-all-observation")]
         public async Task<ActionResult<List<ObservationSiteModel>>> GetObservations()
         {
@@ -64,7 +100,7 @@ namespace Forest_fire_control.Controllers
         {
             var observation = await _observationService.GetObservation(longitude, latitude);
             var incidents = await _observationService.GetIncedentObservation(observation.Id);
-            if(incidents == null)
+            if(incidents != null)
             {
                 return Ok(incidents);
             }
@@ -73,11 +109,11 @@ namespace Forest_fire_control.Controllers
         }
 
         [HttpGet("get-video-archive-observation")]
-        public async Task<ActionResult<List<Incedent>>> GetVideoArchiveObservations(float longitude, float latitude)
+        public async Task<ActionResult<List<VideoArchive>>> GetVideoArchiveObservations(float longitude, float latitude)
         {
             var observation = await _observationService.GetObservation(longitude, latitude);
             var videoArchive = await _observationService.GetVideoArchiveObservation(observation.Id);
-            if (videoArchive == null)
+            if (videoArchive != null)
             {
                 return Ok(videoArchive);
             }

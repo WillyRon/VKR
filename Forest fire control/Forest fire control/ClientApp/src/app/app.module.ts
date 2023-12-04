@@ -19,6 +19,10 @@ import { CreateObservationComponent } from './create-observation/create-observat
 import { UserService } from './services/user.service';
 import { ObservationSiteComponent } from './observation-site/observation-site.component';
 import { VgBufferingModule, VgControlsModule, VgCoreModule, VgOverlayPlayModule } from 'ngx-videogular';
+import { CreateApplicationComponent } from './application/create-application/create-application.component';
+import { ApplicationTableComponent } from './application/application-table/application-table.component';
+import { RoleGuard } from './services/role.guard';
+import { ApplicationComponent } from './application/application.component';
 
 
 @NgModule({
@@ -31,6 +35,9 @@ import { VgBufferingModule, VgControlsModule, VgCoreModule, VgOverlayPlayModule 
     CreateUserComponent,
     CreateObservationComponent,
     ObservationSiteComponent,
+    CreateApplicationComponent,
+    ApplicationTableComponent,
+    ApplicationComponent,
   ],
 
   imports: [
@@ -52,6 +59,7 @@ import { VgBufferingModule, VgControlsModule, VgCoreModule, VgOverlayPlayModule 
   providers: [
     AuthService,
     AuthGuard,
+    RoleGuard,
     ObservationService,
     UserService,
   ],

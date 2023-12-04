@@ -48,8 +48,11 @@ namespace Forest_fire_control.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("ObservationSiteId")
+                    b.Property<Guid?>("ObservationSiteId")
                         .HasColumnType("uuid");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -88,26 +91,6 @@ namespace Forest_fire_control.Data.Migrations
                     b.ToTable("Incedent");
                 });
 
-            modelBuilder.Entity("Forest_fire_control.Data.Models.MessageError", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Message")
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("MessageError");
-                });
-
             modelBuilder.Entity("Forest_fire_control.Data.Models.ObservationSite", b =>
                 {
                     b.Property<Guid>("Id")
@@ -116,6 +99,9 @@ namespace Forest_fire_control.Data.Migrations
 
                     b.Property<string>("Address")
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsActiveIncident")
+                        .HasColumnType("boolean");
 
                     b.Property<float>("Latitude")
                         .HasColumnType("real");
@@ -129,9 +115,15 @@ namespace Forest_fire_control.Data.Migrations
                     b.Property<Guid>("RegionId")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Url")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.HasIndex("RegionId");
+
+                    b.HasIndex("Longitude", "Latitude")
+                        .IsUnique();
 
                     b.ToTable("ObservationSite");
                 });
@@ -182,7 +174,7 @@ namespace Forest_fire_control.Data.Migrations
                     b.Property<DateTime>("Data")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<Guid>("IncedentId")
+                    b.Property<Guid?>("IncedentId")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("ObservationSiteId")
@@ -202,9 +194,7 @@ namespace Forest_fire_control.Data.Migrations
                 {
                     b.HasOne("Forest_fire_control.Data.Models.ObservationSite", "ObservationSite")
                         .WithMany()
-                        .HasForeignKey("ObservationSiteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ObservationSiteId");
 
                     b.HasOne("Forest_fire_control.Data.Models.User", "User")
                         .WithMany()
@@ -218,15 +208,6 @@ namespace Forest_fire_control.Data.Migrations
                     b.HasOne("Forest_fire_control.Data.Models.ObservationSite", "ObservationSite")
                         .WithMany()
                         .HasForeignKey("ObservationSiteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Forest_fire_control.Data.Models.MessageError", b =>
-                {
-                    b.HasOne("Forest_fire_control.Data.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -253,9 +234,7 @@ namespace Forest_fire_control.Data.Migrations
                 {
                     b.HasOne("Forest_fire_control.Data.Models.Incedent", "Incedent")
                         .WithOne("VideoArchive")
-                        .HasForeignKey("Forest_fire_control.Data.Models.VideoArchive", "IncedentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Forest_fire_control.Data.Models.VideoArchive", "IncedentId");
 
                     b.HasOne("Forest_fire_control.Data.Models.ObservationSite", "ObservationSite")
                         .WithMany()

@@ -14,6 +14,7 @@ namespace Forest_fire_control.Data.Models
         public string Address { get; set; }
         public string Url { get; set; }
         public Guid RegionId { get; set; }
+        public bool IsActiveIncident { get; set; }
 
         public Region Region { get; set; }
     }

@@ -3,11 +3,52 @@
   <p>{{ observation.address }}</p>
   
   <div class="video-container">
-    <iframe width="800" height="600" src="https://www.youtube.com/embed/rMRM_0t8rjU?autoplay=1&mute=1" frameborder="0" allowfullscreen></iframe>
+    <iframe width="800" height="600" [src]="videoUrl" frameborder="0" allowfullscreen></iframe>
   </div>
   
   <div class="buttons-container">
     <button (click)="viewArchive()">Архив видео</button>
+    <button (click)="redirectCreateApplication()">Создать заявку</button>
     <button (click)="viewIncident()">Инцидент</button>
   </div>
+
+  <table *ngIf="isShowIncidents" class="custom-table">
+    <thead>
+      <tr>
+        <th>Дата</th>
+        <th>Статус</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let incident of incidents" [ngClass]="{'highlight-row': incident.status === 1}">
+        <td>{{ incident.data | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+        <td>{{ getStatusString(incident.status) }}</td>
+        <td>
+          <button (click)="goToVideo()" class="custom-btn">
+            <span class="bi bi-play-fill" aria-hidden="true"></span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table *ngIf="isShowArchive" class="custom-table">
+    <thead>
+      <tr>
+        <th>Дата</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let videoArchiv of videoArchivs">
+        <td>{{ videoArchiv.data | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+        <td>
+          <button (click)="goToVideo()" class="custom-btn">
+            <span class="bi bi-play-fill" aria-hidden="true"></span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

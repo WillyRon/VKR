@@ -127,6 +127,79 @@ namespace Forest_fire_control.BI.Services
           
         }
 
+        public async Task<AuthenticationResult> CreateApplication(ApplicationModel applicationModel, Guid? observationId)
+        {
+            var result = new AuthenticationResult();
+            var user = await GetUser(applicationModel.UserEmail);
+            var application = new Application
+            {
+                UserId = user.Id,
+                ObservationSiteId = observationId,
+                Data = applicationModel.Data,
+                Description = applicationModel.Description,
+                Status = applicationModel.Status
+            };
+            _dbContext.Application.Add(application);
+            var saveChangesResult = await _dbContext.SaveChangesAsync();
+
+            if (saveChangesResult > 0)
+            {
+                result.Success = true;
+                return result;
+            }
+            else
+            {
+                result.ErrorMessage = "Ошибка при создании заявки";
+                return result;
+            }
+
+        }
+
+        public async Task<List<ApplicationModel>> GetApplications()
+        {
+            var applications = await _dbContext.Application
+                .Include(a => a.User)
+                .Include(a => a.ObservationSite)
+                    .ThenInclude(o => o.Region)
+                .ToListAsync();
+
+            var applicationModels = new List<ApplicationModel>();
+
+            foreach (var application in applications)
+            {
+                var applicationModel = new ApplicationModel
+                {
+                    UserEmail = application.User.Email,
+                    ObservationSite = MapObservationSiteToModel(application.ObservationSite),
+                    Data = application.Data,
+                    Description = application.Description,
+                    Status = application.Status
+                };
+
+                applicationModels.Add(applicationModel);
+            }
+
+            return applicationModels;
+        }
+
+        private ObservationSiteModel MapObservationSiteToModel(ObservationSite observation)
+        {
+            if (observation == null)
+            {
+                return null;
+            }
+
+            return new ObservationSiteModel
+            {
+                Name = observation.Name,
+                Longitude = observation.Longitude,
+                Latitude = observation.Latitude,
+                Address = observation.Address,
+                Region = observation.Region?.Name,
+                Url = observation.Url,
+            };
+        }
+
         private string GenerateRandomPassword()
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

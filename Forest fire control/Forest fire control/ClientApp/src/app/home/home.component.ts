@@ -17,7 +17,10 @@ export class HomeComponent implements OnInit {
   observations: ObservationSite[] = [];
   yandexMap: any;
 
-  constructor(private observationService: ObservationService, private router: Router, private ngZone: NgZone) {}
+  constructor(
+    private observationService: ObservationService, 
+    private router: Router, 
+    private ngZone: NgZone) {}
 
   ngOnInit(): void {
     this.loadObservations();
@@ -27,6 +30,8 @@ export class HomeComponent implements OnInit {
     this.observationService.getObservations().subscribe(
       (data) => {
         this.observations = data;
+        console.log(this.observations);
+        
         this.initYandexMap();
       },
       (error) => {
@@ -44,6 +49,15 @@ export class HomeComponent implements OnInit {
       });
 
       this.observations.forEach((observation) => {
+        let iconImageHref = '../../assets/Logo/ObseOk.png';
+        let iconImageSize: [number, number] = [20, 20];
+        let iconImageOffset: [number, number] = [-10, -10];
+
+        if (observation.isActiveIncident) {
+          iconImageSize = [30, 30];
+          iconImageOffset = [-15, -15];
+          iconImageHref = '../../assets/Logo/Danger.png';
+        }
         const marker = new ymaps.Placemark(
           [observation.latitude, observation.longitude],
           {
@@ -51,9 +65,9 @@ export class HomeComponent implements OnInit {
           },
           {
             iconLayout: 'default#image',
-            iconImageHref: '../../assets/Logo/ObseOk.png',
-            iconImageSize: [20, 20],
-            iconImageOffset: [-10, -10],
+            iconImageHref: iconImageHref,
+            iconImageSize: iconImageSize,
+            iconImageOffset: iconImageOffset,
           }
         );
 

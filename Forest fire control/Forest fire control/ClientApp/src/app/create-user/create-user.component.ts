@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user.model';
-import { UserRole, UserRoleDisplay } from '../models/user-role.enum';
+import { UserRole, UserRoleDisplay } from '../models/emums/user-role.enum';
 import { ObservationService } from '../services/observation.service';
 import { Region } from '../models/regoin.model';
 import { UserService } from '../services/user.service';

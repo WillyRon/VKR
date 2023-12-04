@@ -12,7 +12,6 @@ namespace Forest_fire_control.Data.Config
         public DbSet<User> User { get; set; }
         public DbSet<ObservationSite> ObservationSite { get; set; }
         public DbSet<Application> Application { get; set; }
-        public DbSet<MessageError> MessageError { get; set; }
         public DbSet<VideoArchive> VideoArchive { get; set; }
         public DbSet<Region> Region { get; set; }
         public DbSet<Incedent> Incedent { get; set; }

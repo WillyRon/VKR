@@ -4,4 +4,6 @@ export interface ObservationSite {
     latitude: number;
     address: string;
     region: string;
+    url: string;
+    isActiveIncident: boolean;
   }

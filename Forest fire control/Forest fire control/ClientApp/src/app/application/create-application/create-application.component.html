@@ -1,0 +1,28 @@
+<div class="user-form">
+    <h2 class="form-title">Создать заявку</h2>
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="observationSite">Точка видеонаблюдения:</label>
+        <select id="observationSite" name="observationSite" [(ngModel)]="application.observationSite">
+            <option value=""></option> 
+            <option *ngFor="let obs of observations" [ngValue]="obs" [selected]="obs.longitude === application?.observationSite?.longitude">
+              {{ obs.name }}
+            </option>
+          </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Описание:</label>
+        <textarea id="description" name="description" [(ngModel)]="application.description"required></textarea>
+      </div>
+  
+  
+      <div *ngIf="CreatedFailed" class="message error-message">
+        {{ CreatedErrorMessage }}
+      </div>
+      <div *ngIf="CreatedSuccess" class="message success-message">
+        Заявка успешно создана
+      </div>
+      <button type="submit" [disabled]="userForm.invalid" class="submit-button">Создать</button>
+    </form>
+  </div>

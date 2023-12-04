@@ -1,0 +1,18 @@
+<div class="application-table">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Пользователь</th>
+          <th>Точка видеонаблюдения</th>
+          <th>Статус</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let application of applications" (click)="goToApplicationDetails(application)">
+          <td>{{ application.userEmail }}</td>
+          <td>{{ application.observationSite?.name }}</td>
+          <td>{{ getStatusString(application.status) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

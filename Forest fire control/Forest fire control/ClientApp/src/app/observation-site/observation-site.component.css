@@ -41,3 +41,34 @@
 .buttons-container button:hover {
   background-color: #45a049;
 }
+
+.custom-table {
+  margin: 0 auto; /* Центрирование таблицы по ширине */
+  max-width: 100%; /* Ограничение максимальной ширины, если нужно */
+  border-collapse: collapse;
+  margin-bottom: 1rem; /* Отступ между таблицей и другими элементами */
+}
+
+.custom-table th, .custom-table td {
+  padding: 0.5rem; /* Уменьшил отступ внутри ячеек */
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.custom-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 0; /* Убрал отступы у кнопки */
+}
+
+.custom-btn .bi-play-fill {
+  font-size: 1.5rem;
+  color: #007bff;
+}
+
+.highlight-row {
+  background-color: #ffaaaa; /* или другой цвет на ваш выбор */
+}

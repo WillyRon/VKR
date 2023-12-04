@@ -1,0 +1,32 @@
+.user-info {
+    margin: 20px 200px 0;
+    padding: 20px;
+    background-color: #fbfcec;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .observation-info {
+    margin: 20px 200px;
+    padding: 20px;
+    background-color: #fbfcec;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .description-info {
+    margin: 20px 200px;
+    padding: 20px;
+    background-color: #fbfcec;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .custom-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }

@@ -23,7 +23,7 @@ export class AuthService {
   login(email: string, password: string): Observable<any> {
     const loginData = { email, password };
 
-    return this.http.post<any>(`${this.apiUrl}/login`, loginData)
+    return this.http.post<any>(`${this.apiUrl}/login`, loginData, { withCredentials: true })
       .pipe(
         tap(response => {
           if (response && response.token) {
@@ -43,11 +43,14 @@ export class AuthService {
       const decodedToken: any = jwtDecode(token);
       this.isAdminSubject.next(decodedToken.role === 'Admin');
       this.emailSubject.next(decodedToken.email);
+    } else {
+      this.isAdminSubject.next(false);    
     }
   }
 
   isAdmin(): Observable<boolean> {
     return this.isAdmin$;
+    
   }
 
   getEmail(): string {

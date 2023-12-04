@@ -1,0 +1,16 @@
+<div class="user-info">
+    <h2>{{ user?.name }} {{ user?.lastName }} {{ user?.middleName }}</h2>
+    <p>{{ user?.phoneNumber }}</p>
+  </div>
+  
+  <div *ngIf="application.observationSite" class="observation-info">
+    <h3>{{ application?.observationSite?.name }}</h3>
+    <p>{{ application?.observationSite?.latitude }}, {{ application?.observationSite?.longitude }}</p>
+    <p>{{ application?.observationSite?.address }}</p>
+    <button class="custom-button" (click)="redirectToObservationSite()">Перейти</button>
+  </div>
+  
+  <div class="description-info">
+    <h3>Сообщение</h3>
+    <p>{{ application?.description }}</p>
+  </div>

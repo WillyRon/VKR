@@ -42,6 +42,7 @@ namespace Forest_fire_control.BI.Services
                     Address = observation.Address,
                     Region = observation.Region.Name,
                     Url = observation.Url,
+                    IsActiveIncident = observation.IsActiveIncident,
                 };
 
                 observationModels.Add(observationModel);
@@ -112,12 +113,92 @@ namespace Forest_fire_control.BI.Services
 
         public async Task<List<Incedent>> GetIncedentObservation(Guid observationid)
         {
-            return await _dbContext.Incedent.Where(i => i.ObservationSiteId == observationid).ToListAsync();
+            return await _dbContext.Incedent.Where(i => i.ObservationSiteId == observationid).OrderByDescending(i => i.Data).ToListAsync();
         }
 
         public async Task<List<VideoArchive>> GetVideoArchiveObservation(Guid observationid)
         {
-            return await _dbContext.VideoArchive.Where(i => i.ObservationSiteId == observationid).ToListAsync();
+            return await _dbContext.VideoArchive.Where(i => i.ObservationSiteId == observationid).OrderByDescending(i => i.Data).ToListAsync();
+        }
+
+        public async Task<List<Incedent>> GetIncedents()
+        {
+            return await _dbContext.Incedent.ToListAsync();
+        }
+
+        public async Task<AuthenticationResult> UpdateObservation(ObservationSiteModel observationModel)
+        {
+            var result = new AuthenticationResult();
+            var observationDb = await GetObservation(observationModel.Longitude, observationModel.Latitude);
+
+            if (observationDb == null)
+            {
+                result.ErrorMessage = "Точка видеонаблюдения не найдена";
+                return result;
+            }
+
+            var region = await GetOrCreateRegion(observationModel.Region);
+
+            observationDb.Name = observationModel.Name;
+            observationDb.Longitude = observationModel.Longitude;
+            observationDb.Latitude = observationModel.Latitude;
+            observationDb.Address = observationModel.Address;
+            observationDb.RegionId = region.Id;
+            observationDb.Url = observationModel.Url;
+
+            using (var transaction = _dbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    _dbContext.ObservationSite.Update(observationDb);
+                    var saveChangesResult = await _dbContext.SaveChangesAsync();
+
+                    if (saveChangesResult > 0)
+                    {
+                        result.Success = true;
+                        transaction.Commit();
+                    }
+                    else
+                    {
+                        result.ErrorMessage = "Точка видеонаблюдения не обновлена";
+                        transaction.Rollback();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    result.ErrorMessage = $"Ошибка при обновлении данных: {ex.Message}";
+                    transaction.Rollback();
+                }
+            }
+
+            return result;
+        }
+
+        public async Task<AuthenticationResult> DeleteObservation(ObservationSiteModel observationModel)
+        {
+            var result = new AuthenticationResult();
+            var observationDb = await GetObservation(observationModel.Longitude, observationModel.Latitude);
+
+            if (observationDb == null)
+            {
+                result.ErrorMessage = "Точка видеонаблюдения не найдена";
+                return result;
+            }
+
+            _dbContext.ObservationSite.Remove(observationDb);
+            var saveChangesResult = await _dbContext.SaveChangesAsync();
+
+            if (saveChangesResult > 0)
+            {
+                result.Success = true;
+                return result;
+            }
+            else
+            {
+                result.ErrorMessage = "Точка видеонаблюдения не удалена";
+                return result;
+            }
+
         }
 
 
