@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ObservationService } from '../services/observation.service';
-import { Region } from '../models/regoin.model';
-import { ObservationSite } from '../models/observation.model';
+import { ObservationService } from '../../services/observation.service';
+import { Region } from '../../models/regoin.model';
+import { ObservationSite } from '../../models/observation.model';
 
 @Component({
   selector: 'app-create-observation',

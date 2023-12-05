@@ -15,6 +15,9 @@ import { ObservationSite } from "../models/observation.model";
   export class ApplicationComponent implements OnInit {
     application: Application;
     user: User;
+    CreatedSuccess = false;
+    CreatedFailed = false;
+    CreatedErrorMessage: string;
 
 
     constructor(
@@ -45,4 +48,20 @@ import { ObservationSite } from "../models/observation.model";
            this.router.navigate(['/observation-site'], { queryParams: { observation: JSON.stringify(this.application.observationSite) } });
         });
       }
-    }
+      
+      closedApplicarion(){
+        this.userService.changeStatus(this.application).subscribe(
+          (response) => {
+            this.CreatedSuccess = true;
+            this.CreatedFailed = false;
+            setTimeout(() => {
+              this.router.navigate(['/applications']);
+            }, 2000);
+          },
+          (error) => {
+            this.CreatedFailed = true;
+            this.CreatedErrorMessage = 'Произошла ошибка при смене статуса';
+          }
+        );
+      }
+}

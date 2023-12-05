@@ -92,9 +92,9 @@ export class ObservationSiteComponent implements OnInit {
     this.isShowIncidents = true;
   }
 
-  goToVideo(): void {
-    // Реализуйте логику перехода на видео, используя incident
-    console.log('Переход на видео для инцидента с датой:' );
+  goToVideo(id: string): void {
+    // Реализуйте логику перехода на видео
+    console.log('Переход на видео с датой:', id );
   }
 
 }

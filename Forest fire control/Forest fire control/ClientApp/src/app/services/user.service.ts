@@ -24,7 +24,11 @@ export class UserService {
     return this.http.get<Application[]>(`${this.apiUrl}/applications`);
   }
 
-  addApplication(observation: Application): Observable<any> {
-    return this.http.post(`${this.apiUrl}/create-application`, observation);
+  addApplication(application: Application): Observable<any> {
+    return this.http.post(`${this.apiUrl}/create-application`, application);
+  }
+
+  changeStatus(application: Application): Observable<any> {
+    return this.http.post(`${this.apiUrl}/change-application-status`, application);
   }
 }

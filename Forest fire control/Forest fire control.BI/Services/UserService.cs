@@ -16,6 +16,7 @@ using System.Security.Cryptography;
 using Forest_fire_control.Data.Config;
 using Microsoft.EntityFrameworkCore;
 using Forest_fire_control.Data.Entity;
+using Forest_fire_control.Data.Enums;
 
 namespace Forest_fire_control.BI.Services
 {
@@ -178,8 +179,33 @@ namespace Forest_fire_control.BI.Services
 
                 applicationModels.Add(applicationModel);
             }
-
+            applicationModels.OrderBy(a=>a.Status).ToList();
             return applicationModels;
+        }
+
+        public async Task<AuthenticationResult> ChangeApplicationStatus(ApplicationModel applicationModel)
+        {
+            var result = new AuthenticationResult();
+            var user = await GetUser(applicationModel.UserEmail);
+            var application = await _dbContext.Application
+              .FirstOrDefaultAsync(a => a.UserId == user.Id && a.Data == applicationModel.Data);
+
+            if (application != null)
+            {
+                application.Status = IncedentStatusEnum.Done;
+
+                var saveChangesResult = await _dbContext.SaveChangesAsync();
+
+                if (saveChangesResult > 0)
+                {
+                    result.Success = true;
+                    return result;
+                }
+                
+            }
+
+            result.ErrorMessage = "Не удалось найти или обновить заявку.";
+            return result;
         }
 
         private ObservationSiteModel MapObservationSiteToModel(ObservationSite observation)

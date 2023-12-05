@@ -29,9 +29,7 @@ export class HomeComponent implements OnInit {
   loadObservations(): void {
     this.observationService.getObservations().subscribe(
       (data) => {
-        this.observations = data;
-        console.log(this.observations);
-        
+        this.observations = data;        
         this.initYandexMap();
       },
       (error) => {

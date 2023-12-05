@@ -82,6 +82,20 @@ namespace Forest_fire_control.Controllers
             return Ok(applications);
         }
 
+        [HttpPost("change-application-status")]
+        public async Task<IActionResult> ChangeApplicationStatus([FromBody] ApplicationModel applicationModel)
+        {
+            var result = await _userService.ChangeApplicationStatus(applicationModel);
+            if (result.Success)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(new { ErrorMessage = result.ErrorMessage });
+            }
+        }
+
         [HttpGet("user/{email}")]
         public async Task<IActionResult> GetUser(string email)
         {

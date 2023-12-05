@@ -1,0 +1,53 @@
+<div class="observation-table">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Название</th>
+          <th>Координаты</th>
+          <th>Адрес</th>
+          <th>Инцидент</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let observation of observations">
+          <td>{{ observation.name }}</td>
+          <td>{{ observation.longitude }} {{ observation.latitude }}</td>
+          <td>{{ observation.address }}</td>
+          <td>{{ observation.isActiveIncident ? 'Да' : 'Нет' }}</td>
+          <td>
+            <button *ngIf="isAdmin" class="btn btn-primary" (click)="editObservation(observation)">
+              <span class="icon icon-edit" aria-hidden="true" data-toggle="tooltip" title="Редактировать"></span>
+            </button>
+            <button *ngIf="isAdmin" (click)="deleteObservationModal(observation)" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+              <span class="icon icon-delete" aria-hidden="true" data-toggle="tooltip" title="Удалить"></span>
+            </button>
+            <button class="btn btn-info" (click)="goToDetails(observation)">
+              <span class="icon icon-go-to" aria-hidden="true" data-toggle="tooltip" title="Перейти"></span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white d-flex align-items-center">
+          <h5 class="modal-title text-center w-100">Удаление</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body d-flex flex-column align-items-center justify-content-center">
+          <p class="text-center">Вы точно хотите удалить {{ observationToDelete?.name }}?</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-danger" (click)="deleteObservation(observationToDelete)" data-dismiss="modal">Да</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет</button>
+        </div>
+      </div>
+    </div>
+  </div>
+

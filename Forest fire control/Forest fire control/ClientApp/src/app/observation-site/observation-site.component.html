@@ -25,7 +25,7 @@
         <td>{{ incident.data | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
         <td>{{ getStatusString(incident.status) }}</td>
         <td>
-          <button (click)="goToVideo()" class="custom-btn">
+          <button (click)="goToVideo(incident.videoArchiveId)" class="custom-btn">
             <span class="bi bi-play-fill" aria-hidden="true"></span>
           </button>
         </td>
@@ -44,7 +44,7 @@
       <tr *ngFor="let videoArchiv of videoArchivs">
         <td>{{ videoArchiv.data | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
         <td>
-          <button (click)="goToVideo()" class="custom-btn">
+          <button (click)="goToVideo(videoArchiv.id)" class="custom-btn">
             <span class="bi bi-play-fill" aria-hidden="true"></span>
           </button>
         </td>

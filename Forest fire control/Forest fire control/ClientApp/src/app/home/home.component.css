@@ -6,6 +6,10 @@
   ::ng-deep .ymaps-2-1-79-gototech {
     display: none !important;
   }
+
+  ::ng-deep .ymaps-2-1-79-gototaxi__container {
+    display: none !important;
+  }
   
   ::ng-deep .ymaps-i-ua_js_yes .ymaps-i-credits {
     display: none !important;

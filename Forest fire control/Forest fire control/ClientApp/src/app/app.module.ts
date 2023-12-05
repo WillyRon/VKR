@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
 import { MatAutocompleteModule, MatCheckboxModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,7 +14,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth.guard';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { ObservationService } from './services/observation.service';
-import { CreateObservationComponent } from './create-observation/create-observation.component';
+import { CreateObservationComponent } from './observation-site/create-observation/create-observation.component';
 import { UserService } from './services/user.service';
 import { ObservationSiteComponent } from './observation-site/observation-site.component';
 import { VgBufferingModule, VgControlsModule, VgCoreModule, VgOverlayPlayModule } from 'ngx-videogular';
@@ -23,6 +22,9 @@ import { CreateApplicationComponent } from './application/create-application/cre
 import { ApplicationTableComponent } from './application/application-table/application-table.component';
 import { RoleGuard } from './services/role.guard';
 import { ApplicationComponent } from './application/application.component';
+import { ObservationTableComponent } from './observation-site/observation-table/observation-table.component';
+import { EditObservationComponent } from './observation-site/edit-observation/edit-observation.component';
+
 
 
 @NgModule({
@@ -31,13 +33,14 @@ import { ApplicationComponent } from './application/application.component';
     NavMenuComponent,
     HomeComponent,
     LoginComponent,
-    CounterComponent,
     CreateUserComponent,
     CreateObservationComponent,
     ObservationSiteComponent,
     CreateApplicationComponent,
     ApplicationTableComponent,
     ApplicationComponent,
+    ObservationTableComponent,
+    EditObservationComponent,
   ],
 
   imports: [
@@ -63,6 +66,7 @@ import { ApplicationComponent } from './application/application.component';
     ObservationService,
     UserService,
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

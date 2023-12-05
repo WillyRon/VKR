@@ -1,0 +1,104 @@
+
+.observation-table {
+    margin: 20px 200px; 
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fbfcec;
+  }
+  
+  th, td {
+    border: 1px solid #fffefe;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #ffffff;
+  }
+  
+  .btn {
+    margin-right: 5px;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  .btn-info {
+    background-color: #17a2b8;
+    color: #fff;
+  }
+  
+  .icon {
+    margin-right: 5px;
+  }
+  
+  .btn-danger .icon-delete:before {
+    content: '\1F5D1'; 
+  }
+  
+  .btn-primary .icon-edit:before {
+    content: '\270E'; 
+  }
+  
+
+  .btn-info .icon-go-to:before {
+    content: '\2192'; 
+  }
+  
+  .btn:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .tooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; 
+    left: 50%;
+    margin-left: -60px;
+  
+
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .tooltip:hover {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .btn-danger .tooltip-delete {
+    top: -30px;
+    left: 0;
+  }
+  
+
+  .btn-primary .tooltip-edit {
+    top: -30px;
+    left: 0;
+  }
+  
+
+  .btn-info .tooltip-go-to {
+    top: -30px;
+    left: 0;
+  }

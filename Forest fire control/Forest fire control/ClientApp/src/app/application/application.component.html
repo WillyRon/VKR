@@ -13,4 +13,11 @@
   <div class="description-info">
     <h3>Сообщение</h3>
     <p>{{ application?.description }}</p>
+    <div *ngIf="CreatedFailed" class="message error-message">
+      {{ CreatedErrorMessage }}
+    </div>
+    <div *ngIf="CreatedSuccess" class="message success-message">
+      Заявка отработана
+    </div>
+    <button *ngIf="application.status === 1" class="custom-button" (click)="closedApplicarion()">Закрыть обращение</button>
   </div>
