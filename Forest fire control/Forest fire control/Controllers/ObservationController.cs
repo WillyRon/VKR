@@ -121,5 +121,12 @@ namespace Forest_fire_control.Controllers
             return BadRequest();
         }
 
+        [HttpGet("archive-video/{id}")]
+        public async Task<IActionResult> GetUser(string id)
+        {
+            var video = await _observationService.GetArchiveVideo(id);
+            return video;
+        }
+
     }
 }

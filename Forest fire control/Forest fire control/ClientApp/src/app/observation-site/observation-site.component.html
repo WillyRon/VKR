@@ -2,14 +2,20 @@
   <h1>{{ observation.name }}</h1>
   <p>{{ observation.address }}</p>
   
-  <div class="video-container">
-    <iframe width="800" height="600" [src]="videoUrl" frameborder="0" allowfullscreen></iframe>
+  <div *ngIf="isLive" class="video-container">
+    <iframe width="1200" height="600" [src]="videoUrl" frameborder="0" allowfullscreen></iframe>
   </div>
+  <video controls *ngIf="!isLive">
+    <source [src]="videoUrlArch" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
   
   <div class="buttons-container">
     <button (click)="viewArchive()">Архив видео</button>
-    <button (click)="redirectCreateApplication()">Создать заявку</button>
-    <button (click)="viewIncident()">Инцидент</button>
+    <button *ngIf="isLive" (click)="redirectCreateApplication()">Создать заявку</button>
+    <button *ngIf="isActiveIncidenInArchive" (click)="changeInsedentStatus()">Инцидент отработан</button>
+    <button *ngIf="isLive" (click)="viewIncident()">Инцидент</button>
+    <button *ngIf="!isLive" (click)="toLive()">К трансляции</button>
   </div>
 
   <table *ngIf="isShowIncidents" class="custom-table">

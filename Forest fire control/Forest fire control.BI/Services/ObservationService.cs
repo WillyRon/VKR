@@ -3,10 +3,13 @@ using Forest_fire_control.Data.Config;
 using Forest_fire_control.Data.Entity;
 using Forest_fire_control.Data.Model;
 using Forest_fire_control.Data.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,10 +20,14 @@ namespace Forest_fire_control.BI.Services
     {
 
         private readonly ApplicationDbContext _dbContext;
+        private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _env; 
 
-        public ObservationService( ApplicationDbContext dbContext)
+        public ObservationService( ApplicationDbContext dbContext, IConfiguration configuration, IWebHostEnvironment env)
         {
             _dbContext = dbContext;
+            _configuration = configuration;
+            _env = env;
         }
         public async Task<List<Region>> GetRegions()
         {
@@ -201,7 +208,18 @@ namespace Forest_fire_control.BI.Services
 
         }
 
+        public async Task<IActionResult> GetArchiveVideo(string fileName)
+        {
+            var storagePath = Path.GetFullPath(_configuration.GetSection("StorageSettings:StoragePath").Value);
+            fileName = Path.ChangeExtension(fileName, ".mp4");
+            var filePath = Path.Combine(storagePath, fileName);
 
+            //if (!System.IO.File.Exists(filePath))
+            //    return new NotFoundResult();
+
+            var fileBytes = await System.IO.File.ReadAllBytesAsync(filePath);
+            return new FileContentResult(fileBytes, "video/mp4");
+        }
 
 
 

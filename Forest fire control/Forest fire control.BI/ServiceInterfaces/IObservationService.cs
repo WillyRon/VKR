@@ -1,6 +1,7 @@
 ﻿using Forest_fire_control.Data.Entity;
 using Forest_fire_control.Data.Model;
 using Forest_fire_control.Data.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -18,6 +19,8 @@ namespace Forest_fire_control.BI.ServiceInterfaces
         Task<List<Incedent>> GetIncedentObservation(Guid id);
 
         Task<List<VideoArchive>> GetVideoArchiveObservation(Guid id);
+
+        Task<IActionResult> GetArchiveVideo(string id);
 
         Task<List<ObservationSiteModel>> GetObservations();
 

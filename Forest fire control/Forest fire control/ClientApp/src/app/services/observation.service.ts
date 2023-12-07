@@ -47,6 +47,10 @@ export class ObservationService {
     return this.http.get<VideoArchive[]>(`${this.apiUrl}/get-video-archive-observation?longitude=${longitude}&latitude=${latitude}`);
   }
 
+  getVideo(id: string): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/archive-video/${id}`, { responseType: 'blob' });
+  }
+
   getStatusString(status: IncedentStatusEnum): string {
     switch (status) {
       case IncedentStatusEnum.New:

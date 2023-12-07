@@ -33,7 +33,6 @@
             </a>
             <div class="dropdown-menu mt-0" [ngClass]="{ 'show': isDropdownOpen }" aria-labelledby="userDropdown">
               <a *ngIf="isAdmin" class="dropdown-item" [routerLink]="['/create-user']">Добавить пользователя</a>
-              <a class="dropdown-item" [routerLink]="['/create-application']">унт</a>
               <a class="dropdown-item" [routerLink]="['/observations']">Точки видеонаблюдения</a>
               <a *ngIf="isAdmin" class="dropdown-item" [routerLink]="['/create-observation']">Добавить точку</a>
               <a *ngIf="isAdmin" class="dropdown-item" [routerLink]="['/applications']">Заявки</a>

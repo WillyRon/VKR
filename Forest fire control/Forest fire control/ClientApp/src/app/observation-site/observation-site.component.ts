@@ -19,6 +19,10 @@ export class ObservationSiteComponent implements OnInit {
   incidents: Incedent[] =[];
   videoArchivs: VideoArchive[] = [];
   videoUrl: SafeResourceUrl;
+  videoUrlArch: any;
+  selectIncidentId = '';
+  isLive = true;
+  isActiveIncidenInArchive = false;
 
 
 
@@ -82,6 +86,11 @@ export class ObservationSiteComponent implements OnInit {
     this.isShowIncidents = false;
   }
 
+  toLive(): void {
+    this.isLive = true;
+    this.isShowIncidents = false;
+  }
+
   redirectCreateApplication(): void {
     this.ngZone.run(() => {
        this.router.navigate(['/create-application'], { queryParams: { observation: JSON.stringify(this.observation) } });
@@ -91,10 +100,31 @@ export class ObservationSiteComponent implements OnInit {
     this.isShowArchive = false;
     this.isShowIncidents = true;
   }
-
+  
   goToVideo(id: string): void {
-    // Реализуйте логику перехода на видео
-    console.log('Переход на видео с датой:', id );
+    this.isLive = true;
+    this.isActiveIncidenInArchive = false;
+    this.selectIncidentId = '';
+    this.observationService.getVideo(id).subscribe((data: Blob) => {
+      const blobUrl = URL.createObjectURL(data);
+      this.videoUrlArch = this.sanitizer.bypassSecurityTrustUrl(blobUrl);
+    },
+    (error) => {
+      console.error('Ошибка при получении видео:', error);
+    },
+    () => {
+      const incident = this.incidents.find(inc => inc.videoArchiveId === id);
+      if (incident && incident.status === IncedentStatusEnum.New) {
+        this.isActiveIncidenInArchive = true;
+        this.selectIncidentId = incident.id;
+      }
+      this.isLive = false;
+      this.isShowIncidents = false;
+    });
+  }
+
+  changeInsedentStatus(){
+    console.log('Смена статуса инцидента', this.selectIncidentId );
   }
 
 }
